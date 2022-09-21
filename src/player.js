@@ -1,7 +1,7 @@
 class Player {
-  constructor () {
-    this.name: 'Human'
-    this.token: '&#x1f469'
+  constructor (name, token, wins) {
+    this.name: name || 'Human'
+    this.token: token || '&#x1f469'
     this.wins: wins || 0
   }
 
