@@ -11,7 +11,8 @@ class Game {
     if (humanFighter === computerFighter) {
       return "\uD83D\uDE22It's a draw!\uD83D\uDE22" // will want to access innerText for the choose-your-game-text and add this statement.
       // how will we update the data model so that it knows that this game was a draw? Do we need to?
-    } else if ( humanFighter === 'rock' &&
+    } else if (
+      humanFighter === 'rock' &&
         (computerFighter === 'scissors' || computerFighter === 'lizard')
     ) {
       this.human.wins += 1
@@ -52,7 +53,8 @@ class Game {
   resetGameBoard () {
     this.gameBoardData = []
     this.selectedGameType = selectedGameType
-    this.human = human //should these be 0?
+    this.human = human
+    // should these be 0?
     this.computer = computer // see above comment
   }
 }
@@ -61,4 +63,4 @@ class Game {
 // A way to keep track of the selected game type ✅
 // A way to check the Game’s board data for win conditions ✅
 // A way to detect when a game is a draw (no one has won) ✅
-// A way to reset the Game’s board to begin a new game
+// A way to reset the Game’s board to begin a new game -- work in progress!
