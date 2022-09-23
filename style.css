@@ -104,6 +104,11 @@ text-size-adjust: auto;
   align-items: center;
 }
 
+/* Misc */
+.hidden {
+  display: none;
+}
+
 /* A2FAA3
 92C9B1
 4F759B
