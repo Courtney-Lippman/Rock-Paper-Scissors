@@ -1,5 +1,5 @@
 var fightersList
-var game = new Game('difficult')
+var game = new Game('classic') //here is where the selected game will change
 
 function selectFighterList () {
   if (game.selectedGameType === 'classic') {
@@ -37,7 +37,6 @@ selectFighterList()
 // <4
 // game.human.wins
 // <1
-
 // To Play the Game in the Console:
 // game.human.takeTurn()
 // game.computer.takeTurn()
