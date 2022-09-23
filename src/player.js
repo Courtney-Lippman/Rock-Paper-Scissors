@@ -1,11 +1,12 @@
 class Player {
   constructor (name, token, wins) {
-    this.name: name || 'Human'
-    this.token: token || '&#x1f469'
-    this.wins: wins || 0
+    this.name = name
+    this.token = token
+    this.wins = wins || 0
+    this.fighter = 'rock'
   }
-
-  takeTurn() {
-
+  takeTurn (selectedFighter) {
+    this.fighter = selectedFighter ||
+      fightersList[Math.floor(Math.random() * fightersList.length)]
   }
 }
