@@ -1,11 +1,12 @@
 class Game {
-  constructor (human, computer, selectedGameType) {
+  constructor (selectedGameType) {
     this.gameBoardData = []
     this.selectedGameType = selectedGameType
-    this.human = human
-    this.computer = computer
+    this.human = new Player('Human', '\uD83D\uDC69', 0)
+    this.computer = new Player('Computer', '\uD83D\uDCBB', 0)
   }
-  checkForWinner (human, computer, selectedGameType) {
+
+  checkForWinner () {
     var humanFighter = this.human.fighter
     var computerFighter = this.computer.fighter
     if (humanFighter === computerFighter) {
@@ -52,12 +53,10 @@ class Game {
   }
   resetGameBoard () {
     this.gameBoardData = []
-    this.selectedGameType = selectedGameType
-    this.human = human
-    // should these be 0?
-    this.computer = computer // see above comment
+    // I am not sure what else I need here.
   }
 }
+// module.exports = Game
 // Two Player instances ✅
 // A way to keep track of the data for the game board ✅
 // A way to keep track of the selected game type ✅
