@@ -31,6 +31,16 @@ class Game {
       this.human.wins += 1
       return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
     } else if (
+      humanFighter === 'lizard' &&
+      (computerFighter === 'paper' || computerFighter === 'alien')) {
+      this.human.wins += 1
+      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
+    } else if (
+      humanFighter === 'alien' &&
+      (computerFighter === 'scissors' || computerFighter === 'rock')) {
+      this.human.wins += 1
+      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
+    } else if (
       computerFighter === 'rock' &&
         (humanFighter === 'scissors' || humanFighter === 'lizard')
     ) {
@@ -45,6 +55,18 @@ class Game {
     } else if (
       computerFighter === 'paper' &&
         (humanFighter === 'rock' || humanFighter === 'alien')
+    ) {
+      this.computer.wins += 1
+      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
+    }  else if (
+      computerFighter === 'lizard' &&
+        (humanFighter === 'paper' || humanFighter === 'alien')
+    ) {
+      this.computer.wins += 1
+      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
+    }  else if (
+      computerFighter === 'alien' &&
+        (humanFighter === 'scissors' || humanFighter === 'rock')
     ) {
       this.computer.wins += 1
       return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
