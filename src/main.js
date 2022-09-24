@@ -26,6 +26,7 @@ function selectGame (event) {
       event.target.classList.contains('js-classic')
   ) {
     game = new Game('classic')
+    selectFighterList()
     takeAwayPutBackHomeView()
     displayClassicFighters()
     console.log('You are a genius!')
@@ -34,20 +35,67 @@ function selectGame (event) {
       event.target.classList.contains('js-difficult')
   ) {
     game = new Game('difficult')
+    selectFighterList()
     takeAwayPutBackHomeView()
     displayDifficultFighters()
     console.log("You're very intelligent!")
   }
-
-  selectFighterList()
-  console.log(fightersList)
 }
 
+// function selectFighterList () {
+//   if (game.selectedGameType === 'classic') {
+//     fightersList = [ 'rock', 'paper', 'scissors' ]
+//   } else {
+//     fightersList = [ 'rock', 'paper', 'scissors', 'alien', 'lizard' ]
+//   }
+// }
 function selectFighterList () {
   if (game.selectedGameType === 'classic') {
-    fightersList = [ 'rock', 'paper', 'scissors' ]
+    fightersList = [
+      {
+        name: 'rock',
+        // beats: [ fighterList[2]] maybe just string name instead
+        img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
+      },
+      {
+        name: 'paper',
+        // beats: [ fightersList[0] ]
+        img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
+      },
+      {
+        name: 'scissors',
+        // beats: [ fightersList[1] ]
+        img: '<img class="js-2" src="assets/happy-scissors.png" alt="Scissors">'
+      }
+    ]
   } else {
-    fightersList = [ 'rock', 'paper', 'scissors', 'alien', 'lizard' ]
+    fightersList = [
+      {
+        name: 'rock',
+        // beats: [ fightersList[2], fightersList[4] ]
+        img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
+      },
+      {
+        name: 'paper',
+        // beats: [ fightersList[0], fightersList[3] ]
+        img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
+      },
+      {
+        name: 'scissors',
+        // beats: [ fightersList[1], fightersList[4] ]
+        img: '<img class="js-2" src="assets/happy-scissors.png" alt="Scissors">'
+      },
+      {
+        name: 'alien',
+        // beats: [ fightersList[2], fightersList[0] ]
+        img: '<img class="js-3" src="assets/happy-alien.png" alt="Happy alien">'
+      },
+      {
+        name: 'lizard',
+        // beats: [ fightersList[1], fightersList[3] ]
+        img: '<img class="js-4" src="assets/flat-lizard.png" alt="Lizard">'
+      }
+    ]
   }
 }
 
@@ -58,7 +106,9 @@ function takeAwayPutBackHomeView () {
 }
 
 function displayClassicFighters () {
-  classicMainSection.innerHTML = `<div class="display-classic-fighters"><img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock"><img class="js-1" src="assets/happy-paper.png" alt="Happy paper"><img class="js-2" src="assets/happy-scissors.png" alt="Scissors"></div>`
+  console.log(fightersList[0])
+  classicMainSection.innerHTML = `<div class="display-classic-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}</div>`
+  // classicMainSection.innerHTML = `<div class="display-classic-fighters"><img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock"><img class="js-1" src="assets/happy-paper.png" alt="Happy paper"><img class="js-2" src="assets/happy-scissors.png" alt="Scissors"></div>`
   // Display images for rock paper and scissors
   // access element that already exists on the html page. Make a variable for it.
   // use .innerHTML and put in the images <img> (be careful of whitespace here!)
@@ -67,16 +117,11 @@ function displayClassicFighters () {
 }
 
 function displayDifficultFighters () {
-  difficultMainSection.innerHTML = `<div class="display-difficult-fighters"><img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock"><img class="js-1" src="assets/happy-paper.png" alt="Happy paper"><img class="js-2" src="assets/happy-scissors.png" alt="Scissors"><img class="js-3" src="assets/happy-alien.png" alt="Happy alien"><img class="js-4" src="assets/flat-lizard.png" alt="Lizard"></div>`
-  // Display images for rock, paper, scissors, lizard, alien
-  // access element that already exists on the html page. Make a variable for it.
-  // use .innerHTML and put in the images <img> (be careful of whitespace here!)
-  // Display them in a way that makes them clickable
-  // add event Listener to parent element that already exists **see halloween codepen for more info on how to do this!***
+  console.log(fightersList[0])
+  difficultMainSection.innerHTML = `<div class="display-difficult-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}${fightersList[3].img}${fightersList[4].img}</div>`
 }
 
 function selectFighter (event) {
-  console.log(event)
   if (event.target.classList.contains('js-0')) {
     // maybe push the img into an array?
     console.log(fightersList[0])
@@ -119,42 +164,12 @@ function selectFighter (event) {
     // gives us 'scissors'
     console.log(game.computer)
   }
+}
+
+function determineAndShowWinner () {
   console.log(game.checkForWinner())
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'
 // at the same time game.computer.takeTurn() should be invoked
 // this may need to be a new function (maybe not) but then game.checkForWinner() should then be invoked!
-// selectFighterList()
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// <'👩Human won this round!👩'
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// <"😢It's a draw!😢"
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// <'💻Computer won this round!💻'
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// < '💻Computer won this round!💻'
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// <"😢It's a draw!😢"
-// game.human.takeTurn('scissors')
-// game.computer.takeTurn()
-// game.checkForWinner()
-// <'💻Computer won this round!💻'
-// game.computer.wins
-// <4
-// game.human.wins
-// <1
-// To Play the Game in the Console:
-// game.human.takeTurn()
-// game.computer.takeTurn()
-// game.checkForWinner()
