@@ -104,6 +104,30 @@ text-size-adjust: auto;
   align-items: center;
 }
 
+/* Classic and Difficult Fighter Displays */
+img {
+  width: 8vw;
+  height:8vw;
+  margin: 2em;
+}
+
+.display-classic-fighters {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5em;
+  width: 45vw;
+}
+
+.display-difficult-fighters {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 5em;
+  width: 45vw;
+
+}
+
 /* Misc */
 .hidden {
   display: none;
