@@ -1,6 +1,5 @@
 class Game {
   constructor (selectedGameType) {
-    this.gameBoardData = []
     this.selectedGameType = selectedGameType
     this.human = new Player('Human', '\uD83D\uDC69', 0)
     this.computer = new Player('Computer', '\uD83D\uDCBB', 0)
@@ -32,12 +31,14 @@ class Game {
       return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
     } else if (
       humanFighter === 'lizard' &&
-      (computerFighter === 'paper' || computerFighter === 'alien')) {
+        (computerFighter === 'paper' || computerFighter === 'alien')
+    ) {
       this.human.wins += 1
       return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
     } else if (
       humanFighter === 'alien' &&
-      (computerFighter === 'scissors' || computerFighter === 'rock')) {
+        (computerFighter === 'scissors' || computerFighter === 'rock')
+    ) {
       this.human.wins += 1
       return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
     } else if (
@@ -58,13 +59,13 @@ class Game {
     ) {
       this.computer.wins += 1
       return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    }  else if (
+    } else if (
       computerFighter === 'lizard' &&
         (humanFighter === 'paper' || humanFighter === 'alien')
     ) {
       this.computer.wins += 1
       return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    }  else if (
+    } else if (
       computerFighter === 'alien' &&
         (humanFighter === 'scissors' || humanFighter === 'rock')
     ) {
@@ -74,8 +75,11 @@ class Game {
     // There has got to be a way to make this conditional less repetitive!
   }
   resetGameBoard () {
-    this.gameBoardData = []
-    // I am not sure what else I need here.
+    this.selectedFightersImgs = []
+    this.selectedGameType = selectedGameType
+    this.human = new Player('Human', '\uD83D\uDC69', 0)
+    this.computer = new Player('Computer', '\uD83D\uDCBB', 0)
+    // I am not sure what I need here. This is my best guess right now.
   }
 }
 // module.exports = Game
