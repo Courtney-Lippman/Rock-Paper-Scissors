@@ -1,13 +1,10 @@
 // ~~~~~~Variables~~~~
-// ~~Home view DOM variables~~~
 var homeClassicSection = document.querySelector('.js-home-classic-section')
 var homeDifficultSection = document.querySelector('.js-home-difficult-section')
 var chooseYourGameText = document.querySelector('.js-choose-your-game-text')
-
-// ~~~Classic view DOM Variables~~~
 var classicMainSection = document.querySelector('.js-classic-main-section')
 var difficultMainSection = document.querySelector('.js-difficult-main-section')
-// ~~~Misc variables
+var winnerMainSection = document.querySelector('.js-winner-main-section')
 var fightersList
 var game
 
@@ -29,7 +26,6 @@ function selectGame (event) {
     selectFighterList()
     takeAwayPutBackHomeView()
     displayClassicFighters()
-    console.log('You are a genius!')
   } else if (
     event.target.parentElement.classList.contains('js-difficult') ||
       event.target.classList.contains('js-difficult')
@@ -38,33 +34,25 @@ function selectGame (event) {
     selectFighterList()
     takeAwayPutBackHomeView()
     displayDifficultFighters()
-    console.log("You're very intelligent!")
   }
 }
 
-// function selectFighterList () {
-//   if (game.selectedGameType === 'classic') {
-//     fightersList = [ 'rock', 'paper', 'scissors' ]
-//   } else {
-//     fightersList = [ 'rock', 'paper', 'scissors', 'alien', 'lizard' ]
-//   }
-// }
 function selectFighterList () {
   if (game.selectedGameType === 'classic') {
     fightersList = [
       {
         name: 'rock',
-        // beats: [ fighterList[2]] maybe just string name instead
+        beats: 'scissors',
         img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
       },
       {
         name: 'paper',
-        // beats: [ fightersList[0] ]
+        beats: 'rock',
         img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
       },
       {
         name: 'scissors',
-        // beats: [ fightersList[1] ]
+        beats: 'paper',
         img: '<img class="js-2" src="assets/happy-scissors.png" alt="Scissors">'
       }
     ]
@@ -72,27 +60,27 @@ function selectFighterList () {
     fightersList = [
       {
         name: 'rock',
-        // beats: [ fightersList[2], fightersList[4] ]
+        beats: 'scissors lizard',
         img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
       },
       {
         name: 'paper',
-        // beats: [ fightersList[0], fightersList[3] ]
+        beats: 'rock alien',
         img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
       },
       {
         name: 'scissors',
-        // beats: [ fightersList[1], fightersList[4] ]
+        beats: 'paper lizard',
         img: '<img class="js-2" src="assets/happy-scissors.png" alt="Scissors">'
       },
       {
         name: 'alien',
-        // beats: [ fightersList[2], fightersList[0] ]
+        beats: 'scissors rock',
         img: '<img class="js-3" src="assets/happy-alien.png" alt="Happy alien">'
       },
       {
         name: 'lizard',
-        // beats: [ fightersList[1], fightersList[3] ]
+        beats: 'paper alien',
         img: '<img class="js-4" src="assets/flat-lizard.png" alt="Lizard">'
       }
     ]
@@ -106,7 +94,6 @@ function takeAwayPutBackHomeView () {
 }
 
 function displayClassicFighters () {
-  console.log(fightersList[0])
   classicMainSection.innerHTML = `<div class="display-classic-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}</div>`
   // classicMainSection.innerHTML = `<div class="display-classic-fighters"><img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock"><img class="js-1" src="assets/happy-paper.png" alt="Happy paper"><img class="js-2" src="assets/happy-scissors.png" alt="Scissors"></div>`
   // Display images for rock paper and scissors
@@ -117,57 +104,39 @@ function displayClassicFighters () {
 }
 
 function displayDifficultFighters () {
-  console.log(fightersList[0])
   difficultMainSection.innerHTML = `<div class="display-difficult-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}${fightersList[3].img}${fightersList[4].img}</div>`
 }
 
 function selectFighter (event) {
   if (event.target.classList.contains('js-0')) {
-    // maybe push the img into an array?
-    console.log(fightersList[0])
-    // gives us 'rock'
     game.human.takeTurn(fightersList[0])
     game.computer.takeTurn()
-    console.log(game.human)
-    // gives us 'rock'
-    console.log(game.computer) // gives us random
   } else if (event.target.classList.contains('js-1')) {
-    console.log(fightersList[1])
-    // gives us 'paper'
     game.human.takeTurn(fightersList[1])
     game.computer.takeTurn()
-    console.log(game.human)
-    // gives us 'paper'
-    console.log(game.computer)
   } else if (event.target.classList.contains('js-2')) {
-    console.log(fightersList[2])
-    // gives us 'scissors'
     game.human.takeTurn(fightersList[2])
     game.computer.takeTurn()
-    console.log(game.human)
-    // gives us 'scissors'
-    console.log(game.computer)
   } else if (event.target.classList.contains('js-3')) {
-    console.log(fightersList[3])
-    // gives us 'scissors'
     game.human.takeTurn(fightersList[3])
     game.computer.takeTurn()
-    console.log(game.human)
-    // gives us 'scissors'
-    console.log(game.computer)
   } else if (event.target.classList.contains('js-4')) {
-    console.log(fightersList[4])
-    // gives us 'scissors'
     game.human.takeTurn(fightersList[4])
     game.computer.takeTurn()
-    console.log(game.human)
-    // gives us 'scissors'
-    console.log(game.computer)
   }
+  determineAndShowWinner()
 }
 
 function determineAndShowWinner () {
-  console.log(game.checkForWinner())
+  game.checkForWinner()
+  if (game.winner === 'no one') {
+    chooseYourGameText.innerText = "\uD83D\uDE22It's a draw!\uD83D\uDE22"
+  } else {
+    chooseYourGameText.innerText = `${game.winner.token}${game.winner.name} won this round!${game.winner.token}`
+  }
+  difficultMainSection.classList.add('hidden')
+  classicMainSection.classList.add('hidden')
+  winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'
