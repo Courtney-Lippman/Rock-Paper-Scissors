@@ -5,6 +5,8 @@ var chooseYourGameText = document.querySelector('.js-choose-your-game-text')
 var classicMainSection = document.querySelector('.js-classic-main-section')
 var difficultMainSection = document.querySelector('.js-difficult-main-section')
 var winnerMainSection = document.querySelector('.js-winner-main-section')
+var humanSideWins = document.querySelector('.js-human-side-wins')
+var computerSideWins = document.querySelector('.js-computer-side-wins')
 var fightersList
 var game
 
@@ -95,12 +97,6 @@ function takeAwayPutBackHomeView () {
 
 function displayClassicFighters () {
   classicMainSection.innerHTML = `<div class="display-classic-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}</div>`
-  // classicMainSection.innerHTML = `<div class="display-classic-fighters"><img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock"><img class="js-1" src="assets/happy-paper.png" alt="Happy paper"><img class="js-2" src="assets/happy-scissors.png" alt="Scissors"></div>`
-  // Display images for rock paper and scissors
-  // access element that already exists on the html page. Make a variable for it.
-  // use .innerHTML and put in the images <img> (be careful of whitespace here!)
-  // Display them in a way that makes them clickable
-  // add event Listener to parent element that already exists **see halloween codepen for more info on how to do this!***
 }
 
 function displayDifficultFighters () {
@@ -108,6 +104,7 @@ function displayDifficultFighters () {
 }
 
 function selectFighter (event) {
+  event.preventDefault()
   if (event.target.classList.contains('js-0')) {
     game.human.takeTurn(fightersList[0])
     game.computer.takeTurn()
@@ -134,9 +131,26 @@ function determineAndShowWinner () {
   } else {
     chooseYourGameText.innerText = `${game.winner.token}${game.winner.name} won this round!${game.winner.token}`
   }
+  changeToWinnerView()
+  winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
+  humanSideWins.innerText = `${game.human.wins}`
+  computerSideWins.innerText = `${game.computer.wins}`
+  setTimeout(hideWinnerShowSelectfighter, 3000)
+  // the above side wins may need to be moved depending on how I do the reset.
+}
+
+function changeToWinnerView () {
   difficultMainSection.classList.add('hidden')
   classicMainSection.classList.add('hidden')
-  winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
+  winnerMainSection.classList.remove('hidden')
+}
+
+function hideWinnerShowSelectfighter () {
+  game.resetGameBoard()
+  chooseYourGameText.innerText = 'Choose Your Fighter!'
+  winnerMainSection.classList.add('hidden')
+  difficultMainSection.classList.remove('hidden')
+  classicMainSection.classList.remove('hidden')
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'
