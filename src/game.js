@@ -3,76 +3,25 @@ class Game {
     this.selectedGameType = selectedGameType
     this.human = new Player('Human', '\uD83D\uDC69', 0)
     this.computer = new Player('Computer', '\uD83D\uDCBB', 0)
+    this.winner = 'unknown'
   }
 
   checkForWinner () {
     var humanFighter = this.human.fighter
     var computerFighter = this.computer.fighter
-    if (humanFighter === computerFighter) {
+    if (humanFighter.name === computerFighter.name) {
+      this.winner = 'no one'
       return "\uD83D\uDE22It's a draw!\uD83D\uDE22" // will want to access innerText for the choose-your-game-text and add this statement.
       // how will we update the data model so that it knows that this game was a draw? Do we need to?
-    } else if (
-      humanFighter === 'rock' &&
-        (computerFighter === 'scissors' || computerFighter === 'lizard')
-    ) {
+    } else if (humanFighter.beats.includes(computerFighter.name)) {
       this.human.wins += 1
+      this.winner = this.human
       return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
-    } else if (
-      humanFighter === 'scissors' &&
-        (computerFighter === 'paper' || computerFighter === 'lizard')
-    ) {
-      this.human.wins += 1
-      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
-    } else if (
-      humanFighter === 'paper' &&
-        (computerFighter === 'rock' || computerFighter === 'alien')
-    ) {
-      this.human.wins += 1
-      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
-    } else if (
-      humanFighter === 'lizard' &&
-        (computerFighter === 'paper' || computerFighter === 'alien')
-    ) {
-      this.human.wins += 1
-      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
-    } else if (
-      humanFighter === 'alien' &&
-        (computerFighter === 'scissors' || computerFighter === 'rock')
-    ) {
-      this.human.wins += 1
-      return '\uD83D\uDC69Human won this round!\uD83D\uDC69'
-    } else if (
-      computerFighter === 'rock' &&
-        (humanFighter === 'scissors' || humanFighter === 'lizard')
-    ) {
+    } else if (computerFighter.beats.includes(humanFighter.name)) {
       this.computer.wins += 1
-      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    } else if (
-      computerFighter === 'scissors' &&
-        (humanFighter === 'paper' || humanFighter === 'lizard')
-    ) {
-      this.computer.wins += 1
-      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    } else if (
-      computerFighter === 'paper' &&
-        (humanFighter === 'rock' || humanFighter === 'alien')
-    ) {
-      this.computer.wins += 1
-      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    } else if (
-      computerFighter === 'lizard' &&
-        (humanFighter === 'paper' || humanFighter === 'alien')
-    ) {
-      this.computer.wins += 1
-      return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
-    } else if (
-      computerFighter === 'alien' &&
-        (humanFighter === 'scissors' || humanFighter === 'rock')
-    ) {
-      this.computer.wins += 1
+      this.winner = this.computer
       return '\uD83D\uDCBBComputer won this round!\uD83D\uDCBB'
     }
-    // There has got to be a way to make this conditional less repetitive!
   }
   resetGameBoard () {
     this.selectedFightersImgs = []
