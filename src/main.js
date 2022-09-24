@@ -7,6 +7,7 @@ var difficultMainSection = document.querySelector('.js-difficult-main-section')
 var winnerMainSection = document.querySelector('.js-winner-main-section')
 var humanSideWins = document.querySelector('.js-human-side-wins')
 var computerSideWins = document.querySelector('.js-computer-side-wins')
+var changeGameButton = document.querySelector('.js-change-game-button')
 var fightersList
 var game
 
@@ -135,7 +136,7 @@ function determineAndShowWinner () {
   winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
   humanSideWins.innerText = `${game.human.wins}`
   computerSideWins.innerText = `${game.computer.wins}`
-  setTimeout(hideWinnerShowSelectfighter, 3000)
+  setTimeout(hideWinnerShowSelectfighterView, 2000)
   // the above side wins may need to be moved depending on how I do the reset.
 }
 
@@ -145,12 +146,12 @@ function changeToWinnerView () {
   winnerMainSection.classList.remove('hidden')
 }
 
-function hideWinnerShowSelectfighter () {
-  game.resetGameBoard()
+function hideWinnerShowSelectfighterView () {
   chooseYourGameText.innerText = 'Choose Your Fighter!'
   winnerMainSection.classList.add('hidden')
   difficultMainSection.classList.remove('hidden')
   classicMainSection.classList.remove('hidden')
+  changeGameButton.classList.remove('hidden')
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'
