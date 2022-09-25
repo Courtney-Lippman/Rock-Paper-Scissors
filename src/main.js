@@ -10,6 +10,7 @@ var computerSideWins = document.querySelector('.js-computer-side-wins')
 var changeGameButton = document.querySelector('.js-change-game-button')
 var fightersList
 var game
+var winsTally = [0,0]
 
 // ~~~~~Event Listeners~~~~~~
 // ~~~Home Page~~~
@@ -27,6 +28,10 @@ function selectGame () {
       event.target.classList.contains('js-classic')
   ) {
     game = new Game('classic')
+    game.human.wins = winsTally[0]
+    game.computer.wins = winsTally[1]
+    winsTally.pop()
+    winsTally.pop()
     selectFighterList()
     takeAwayHomeView()
     displayClassicFighters()
@@ -35,6 +40,10 @@ function selectGame () {
       event.target.classList.contains('js-difficult')
   ) {
     game = new Game('difficult')
+    game.human.wins = winsTally[0]
+    game.computer.wins = winsTally[1]
+    winsTally.pop()
+    winsTally.pop()
     selectFighterList()
     takeAwayHomeView()
     displayDifficultFighters()
@@ -161,12 +170,19 @@ function hideWinnerShowSelectfighterView () {
 }
 
 function goBackToMainView () {
+  keepWinningTally()
   difficultMainSection.classList.add('hidden')
   classicMainSection.classList.add('hidden')
   changeGameButton.classList.add('hidden')
   homeClassicSection.classList.remove('hidden')
   homeDifficultSection.classList.remove('hidden')
   chooseYourGameText.innerText = 'Choose Your Game!'
+}
+function keepWinningTally () {
+  winsTally.push(game.human.wins)
+  winsTally.push(game.computer.wins)
+  humanSideWins.innerText = `${winsTally[0]}`
+  computerSideWins.innerText = `${winsTally[1]}`
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'
