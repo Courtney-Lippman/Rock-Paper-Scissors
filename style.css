@@ -99,7 +99,7 @@ img:hover {
   cursor: pointer;
 }
 
-.display-classic-fighters {
+.display-classic-fighters, .display-difficult-fighters {
   display: flex;
   justify-content: space-around;
   margin-top: 5em;
@@ -107,12 +107,8 @@ img:hover {
 }
 
 .display-difficult-fighters {
-  display: flex;
-  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 5em;
-  width: 45vw;
 }
 
 .hidden {
