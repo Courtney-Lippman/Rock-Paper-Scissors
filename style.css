@@ -67,6 +67,14 @@ body {
 
 /* Side Sections: */
 
+.change-game-button {
+  background-color: #571F4E;
+  border: medium solid #000000;
+  height: 5vw;
+  width: 12vw;
+  font-size: 1.5vw;
+}
+
 .sides-emojis {
   font-size: 4vw;
   text-size-adjust: auto;

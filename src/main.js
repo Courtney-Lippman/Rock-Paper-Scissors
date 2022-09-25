@@ -7,6 +7,7 @@ var difficultMainSection = document.querySelector('.js-difficult-main-section')
 var winnerMainSection = document.querySelector('.js-winner-main-section')
 var humanSideWins = document.querySelector('.js-human-side-wins')
 var computerSideWins = document.querySelector('.js-computer-side-wins')
+var changeGameButton = document.querySelector('.js-change-game-button')
 var fightersList
 var game
 
@@ -17,16 +18,17 @@ homeDifficultSection.addEventListener('click', selectGame)
 // ~~~Fighter Page~~~
 classicMainSection.addEventListener('click', selectFighter)
 difficultMainSection.addEventListener('click', selectFighter)
+changeGameButton.addEventListener('click', goBackToMainView)
 // Can I put two event listeners that point to the same function like this? Yes, but is there a better way?
 // ~~~~~Event Handlers and Other Functions~~~~~
-function selectGame (event) {
+function selectGame () {
   if (
     event.target.parentElement.classList.contains('js-classic') ||
       event.target.classList.contains('js-classic')
   ) {
     game = new Game('classic')
     selectFighterList()
-    takeAwayPutBackHomeView()
+    takeAwayHomeView()
     displayClassicFighters()
   } else if (
     event.target.parentElement.classList.contains('js-difficult') ||
@@ -34,7 +36,7 @@ function selectGame (event) {
   ) {
     game = new Game('difficult')
     selectFighterList()
-    takeAwayPutBackHomeView()
+    takeAwayHomeView()
     displayDifficultFighters()
   }
 }
@@ -89,22 +91,27 @@ function selectFighterList () {
   }
 }
 
-function takeAwayPutBackHomeView () {
-  homeClassicSection.classList.toggle('hidden')
-  homeDifficultSection.classList.toggle('hidden')
+function takeAwayHomeView () {
+  homeClassicSection.classList.add('hidden')
+  homeDifficultSection.classList.add('hidden')
   chooseYourGameText.innerText = 'Choose Your Fighter!'
 }
 
 function displayClassicFighters () {
+  // difficultMainSection.classList.add('hidden')
+  classicMainSection.classList.remove('hidden')
+  difficultMainSection.innerHTML = ''
   classicMainSection.innerHTML = `<div class="display-classic-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}</div>`
 }
 
 function displayDifficultFighters () {
+  // classicMainSection.classList.add('hidden')
+  difficultMainSection.classList.remove('hidden')
+  classicMainSection.innerHTML = ''
   difficultMainSection.innerHTML = `<div class="display-difficult-fighters">${fightersList[0].img}${fightersList[1].img}${fightersList[2].img}${fightersList[3].img}${fightersList[4].img}</div>`
 }
 
-function selectFighter (event) {
-  event.preventDefault()
+function selectFighter () {
   if (event.target.classList.contains('js-0')) {
     game.human.takeTurn(fightersList[0])
     game.computer.takeTurn()
@@ -135,7 +142,7 @@ function determineAndShowWinner () {
   winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
   humanSideWins.innerText = `${game.human.wins}`
   computerSideWins.innerText = `${game.computer.wins}`
-  setTimeout(hideWinnerShowSelectfighter, 3000)
+  setTimeout(hideWinnerShowSelectfighterView, 2000)
   // the above side wins may need to be moved depending on how I do the reset.
 }
 
@@ -145,12 +152,21 @@ function changeToWinnerView () {
   winnerMainSection.classList.remove('hidden')
 }
 
-function hideWinnerShowSelectfighter () {
-  game.resetGameBoard()
+function hideWinnerShowSelectfighterView () {
   chooseYourGameText.innerText = 'Choose Your Fighter!'
   winnerMainSection.classList.add('hidden')
   difficultMainSection.classList.remove('hidden')
   classicMainSection.classList.remove('hidden')
+  changeGameButton.classList.remove('hidden')
+}
+
+function goBackToMainView () {
+  difficultMainSection.classList.add('hidden')
+  classicMainSection.classList.add('hidden')
+  changeGameButton.classList.add('hidden')
+  homeClassicSection.classList.remove('hidden')
+  homeDifficultSection.classList.remove('hidden')
+  chooseYourGameText.innerText = 'Choose Your Game!'
 }
 //* *******The info below will be in the functions for the event listeners****
 // When a img is clicked, the image should correlate with the index number of the current fightersList aka if user clicks alien img then fighterList[3] is selected and placed in the takeTurn like so maybe.... game.human.takeTurn(fighterList[3]) console.log(fighterList[3]) to make sure that it is indeed a string of 'alien'

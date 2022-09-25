@@ -20,8 +20,6 @@ class Game {
     }
   }
   resetGameBoard () {
-    this.selectedFightersImgs = []
-    // I am not sure what I need here. This is my best guess right now.
   }
 }
 // module.exports = Game

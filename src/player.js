@@ -3,7 +3,7 @@ class Player {
     this.name = name
     this.token = token
     this.wins = wins || 0
-    this.fighter = 'rock'
+    this.fighter = {}
   }
   takeTurn (selectedFighter) {
     this.fighter = selectedFighter ||
