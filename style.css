@@ -56,11 +56,14 @@ body {
 }
 
 .change-game-button {
+  display: flex;
+  justify-content: center;
   background-color: #571F4E;
-  height: 3vw;
-  width: 15vw;
-  font-size: 1.5vw;
+  height: 7vw;
+  width: 17vw;
+  font-size: 2vw;
   margin-top: 5em;
+  padding: 0;
 }
 
 .sides-emojis {
