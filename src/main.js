@@ -40,11 +40,13 @@ function selectFighterList () {
         beats: 'scissors',
         img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
       },
+
       {
         name: 'paper',
         beats: 'rock',
         img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
       },
+
       {
         name: 'scissors',
         beats: 'paper',
@@ -58,21 +60,25 @@ function selectFighterList () {
         beats: 'scissors lizard',
         img: '<img class="js-0" src="assets/happy-rocks.png" alt= "Happy rock">'
       },
+
       {
         name: 'paper',
         beats: 'rock alien',
         img: '<img class="js-1" src="assets/happy-paper.png" alt="Happy paper">'
       },
+
       {
         name: 'scissors',
         beats: 'paper lizard',
         img: '<img class="js-2" src="assets/happy-scissors.png" alt="Scissors">'
       },
+
       {
         name: 'alien',
         beats: 'scissors rock',
         img: '<img class="js-3" src="assets/happy-alien.png" alt="Happy alien">'
       },
+
       {
         name: 'lizard',
         beats: 'paper alien',
@@ -117,16 +123,18 @@ function selectFighter() {
     game.human.takeTurn(fightersList[4])
     game.computer.takeTurn()
   }
+
   determineAndShowWinner()
 }
 
 function determineAndShowWinner() {
   game.checkForWinner()
   if (game.winner === 'no one') {
-    chooseYourGameText.innerText = "\uD83D\uDE22It's a draw!\uD83D\uDE22"
+    chooseYourGameText.innerText = '\uD83D\uDE22It\'s a draw!\uD83D\uDE22'
   } else {
     chooseYourGameText.innerText = `${game.winner.token}${game.winner.name} won this round!${game.winner.token}`
   }
+
   changeToWinnerView()
   winnerMainSection.innerHTML = `<div>${game.human.fighter.img}${game.computer.fighter.img}</div>`
   humanSideWins.innerText = `${game.human.wins}`
