@@ -7,10 +7,10 @@ var winnerMainSection = document.querySelector('.js-winner-main-section')
 var humanSideWins = document.querySelector('.js-human-side-wins')
 var computerSideWins = document.querySelector('.js-computer-side-wins')
 var changeGameButton = document.querySelector('.js-change-game-button')
-var fightersList
-var game
 var human = new Player('Human', '\uD83D\uDC69', 0)
 var computer = new Player('Computer', '\uD83D\uDCBB', 0)
+var fightersList = []
+var game
 
 homeClassicSection.addEventListener('click', selectGame)
 homeDifficultSection.addEventListener('click', selectGame)
@@ -32,7 +32,7 @@ function selectGame() {
   }
 }
 
-function selectFighterList () {
+function selectFighterList() {
   if (game.selectedGameType === 'classic') {
     fightersList = [
       {
