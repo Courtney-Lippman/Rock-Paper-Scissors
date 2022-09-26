@@ -6,7 +6,7 @@ class Player {
     this.fighter = {}
   }
 
-  takeTurn (selectedFighter) {
+  takeTurn(selectedFighter) {
     this.fighter = selectedFighter || fightersList[Math.floor(Math.random() * fightersList.length)]
   }
 }
