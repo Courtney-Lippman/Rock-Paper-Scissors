@@ -9,7 +9,8 @@ var computerSideWins = document.querySelector('.js-computer-side-wins')
 var changeGameButton = document.querySelector('.js-change-game-button')
 var fightersList
 var game
-var winsTally = [ 0, 0 ]
+var human = new Player('Human', '\uD83D\uDC69', 0)
+var computer = new Player('Computer', '\uD83D\uDCBB', 0)
 
 homeClassicSection.addEventListener('click', selectGame)
 homeDifficultSection.addEventListener('click', selectGame)
@@ -22,11 +23,7 @@ function selectGame () {
     event.target.parentElement.classList.contains('js-classic') ||
       event.target.classList.contains('js-classic')
   ) {
-    game = new Game('classic')
-    game.human.wins = winsTally[0]
-    game.computer.wins = winsTally[1]
-    winsTally.pop()
-    winsTally.pop()
+    game = new Game('classic', human, computer)
     selectFighterList()
     takeAwayHomeView()
     displayClassicFighters()
@@ -34,11 +31,7 @@ function selectGame () {
     event.target.parentElement.classList.contains('js-difficult') ||
       event.target.classList.contains('js-difficult')
   ) {
-    game = new Game('difficult')
-    game.human.wins = winsTally[0]
-    game.computer.wins = winsTally[1]
-    winsTally.pop()
-    winsTally.pop()
+    game = new Game('difficult', human, computer)
     selectFighterList()
     takeAwayHomeView()
     displayDifficultFighters()
@@ -172,8 +165,6 @@ function goBackToMainView () {
 }
 
 function keepWinningTally () {
-  winsTally.push(game.human.wins)
-  winsTally.push(game.computer.wins)
-  humanSideWins.innerText = `${winsTally[0]}`
-  computerSideWins.innerText = `${winsTally[1]}`
+  humanSideWins.innerText = `${human.wins}`
+  computerSideWins.innerText = `${computer.wins}`
 }
