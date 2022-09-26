@@ -1,8 +1,8 @@
 class Game {
-  constructor (selectedGameType) {
+  constructor (selectedGameType, human, computer) {
     this.selectedGameType = selectedGameType
-    this.human = new Player('Human', '\uD83D\uDC69', 0)
-    this.computer = new Player('Computer', '\uD83D\uDCBB', 0)
+    this.human = human
+    this.computer = computer
     this.winner = 'unknown'
   }
 
