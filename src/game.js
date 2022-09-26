@@ -1,12 +1,12 @@
 class Game {
-  constructor (selectedGameType, human, computer) {
+  constructor(selectedGameType, human, computer) {
     this.selectedGameType = selectedGameType
     this.human = human
     this.computer = computer
     this.winner = 'unknown'
   }
 
-  checkForWinner () {
+  checkForWinner() {
     var humanFighter = this.human.fighter
     var computerFighter = this.computer.fighter
     if (humanFighter.name === computerFighter.name) {
@@ -18,7 +18,5 @@ class Game {
       this.computer.wins += 1
       this.winner = this.computer
     }
-  }
-  resetGameBoard () {
   }
 }
